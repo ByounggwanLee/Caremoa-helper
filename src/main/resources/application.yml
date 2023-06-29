@@ -363,7 +363,7 @@ logging:
     dateformat: yyyy-MM-dd HH:mm:ss.SSS,Asia/Seoul
 
 #-------------------------------------------------------------
-# Kafka 설정
+# Kafka 설정  
 #-------------------------------------------------------------
   cloud:
     function:
@@ -373,7 +373,7 @@ logging:
     stream:
       kafka:
         #binder:
-        #  brokers: localhost:9091,localhost:9092,localhost:9093
+        #  brokers: localhost:9091,localhost:`,localhost:9093
         #  zkNodes: localhost:2181,localhost:2182,localhost:2183
         binder:
           brokers: 3.39.223.154:9092
