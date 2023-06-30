@@ -152,42 +152,6 @@ spring:
       path: /h2-console
 
 #-------------------------------------------------------------
-# 서버 포트 설정
-#-------------------------------------------------------------
-server:
-  port: 8082
-  servlet:
-    contextPath: /helper
-          
-#-------------------------------------------------------------
-# log File 설정
-#-------------------------------------------------------------
-logging:
-  level:
-    root: error # trace, debug, info, warn, error, fatal
-    "[org.springframework]": info
-    "[org.springframework.jdbc]": info
-    "[org.hibernate.type]": trace      # 파라메터값 확인을 위해서는 trace / off
-    "[com.caremoa]": debug
-        
-    jdbc:
-      connection: off
-      sqlonly: off
-      sqltiming: info
-      audit: off
-      result: off
-      resultsettable: info
-  file:
-    name: logs/app.log
-  logback:
-    rollingpolicy:
-      file-name-pattern: ${LOG_FILE}.%d{yyyy-MM-dd}-%i.log
-      max-file-size: 100MB
-      max-history: 30
-  pattern:
-    dateformat: yyyy-MM-dd HH:mm:ss.SSS,Asia/Seoul
-
-#-------------------------------------------------------------
 # Kafka 설정
 #-------------------------------------------------------------
   cloud:
@@ -235,6 +199,43 @@ logging:
        #   group: member
        #   destination: caremoa-topic
        #   content-type: application/json
+
+
+#-------------------------------------------------------------
+# 서버 포트 설정
+#-------------------------------------------------------------
+server:
+  port: 8082
+  servlet:
+    contextPath: /helper
+          
+#-------------------------------------------------------------
+# log File 설정
+#-------------------------------------------------------------
+logging:
+  level:
+    root: error # trace, debug, info, warn, error, fatal
+    "[org.springframework]": info
+    "[org.springframework.jdbc]": info
+    "[org.hibernate.type]": trace      # 파라메터값 확인을 위해서는 trace / off
+    "[com.caremoa]": debug
+        
+    jdbc:
+      connection: off
+      sqlonly: off
+      sqltiming: info
+      audit: off
+      result: off
+      resultsettable: info
+  file:
+    name: logs/app.log
+  logback:
+    rollingpolicy:
+      file-name-pattern: ${LOG_FILE}.%d{yyyy-MM-dd}-%i.log
+      max-file-size: 100MB
+      max-history: 30
+  pattern:
+    dateformat: yyyy-MM-dd HH:mm:ss.SSS,Asia/Seoul
 
 #-------------------------------------------------------------
 # 사용자 정의 설정
@@ -318,51 +319,6 @@ spring:
         "[use_sql_comment]": true
 
 #-------------------------------------------------------------
-# h2 Console을 이용한 datasource 접근 처리
-# http://localhost:8080/caremoa.member/h2-console
-#-------------------------------------------------------------
-  h2:
-    console:
-      enabled: true
-      path: /h2-console
-
-#-------------------------------------------------------------
-# 포트 설정
-#-------------------------------------------------------------
-server:
-  port: 8080
-  servlet:
-    contextPath: /helper
-
-#-------------------------------------------------------------
-# log File 설정
-#-------------------------------------------------------------
-logging:
-  level:
-    root: error # trace, debug, info, warn, error, fatal
-    "[org.springframework]": error
-    "[org.springframework.jdbc]": error
-    "[org.hibernate.type]": error      # 파라메터값 확인을 위해서는 trace / off
-    "[com.caremoa]": error
-        
-    jdbc:
-      connection: off
-      sqlonly: off
-      sqltiming: error
-      audit: off
-      result: off
-      resultsettable: error
-  file:
-    name: logs/app.log
-  logback:
-    rollingpolicy:
-      file-name-pattern: ${LOG_FILE}.%d{yyyy-MM-dd}-%i.log
-      max-file-size: 100MB
-      max-history: 30
-  pattern:
-    dateformat: yyyy-MM-dd HH:mm:ss.SSS,Asia/Seoul
-
-#-------------------------------------------------------------
 # Kafka 설정  
 #-------------------------------------------------------------
   cloud:
@@ -410,7 +366,52 @@ logging:
        #   group: member
        #   destination: caremoa-topic
        #   content-type: application/json
-       
+ 
+ #-------------------------------------------------------------
+# h2 Console을 이용한 datasource 접근 처리
+# http://localhost:8080/caremoa.member/h2-console
+#-------------------------------------------------------------
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+#-------------------------------------------------------------
+# 포트 설정
+#-------------------------------------------------------------
+server:
+  port: 8080
+  servlet:
+    contextPath: /helper
+
+#-------------------------------------------------------------
+# log File 설정
+#-------------------------------------------------------------
+logging:
+  level:
+    root: error # trace, debug, info, warn, error, fatal
+    "[org.springframework]": error
+    "[org.springframework.jdbc]": error
+    "[org.hibernate.type]": error      # 파라메터값 확인을 위해서는 trace / off
+    "[com.caremoa]": error
+        
+    jdbc:
+      connection: off
+      sqlonly: off
+      sqltiming: error
+      audit: off
+      result: off
+      resultsettable: error
+  file:
+    name: logs/app.log
+  logback:
+    rollingpolicy:
+      file-name-pattern: ${LOG_FILE}.%d{yyyy-MM-dd}-%i.log
+      max-file-size: 100MB
+      max-history: 30
+  pattern:
+    dateformat: yyyy-MM-dd HH:mm:ss.SSS,Asia/Seoul
+    
 #-------------------------------------------------------------
 # 사용자 정의 설정
 #-------------------------------------------------------------        
