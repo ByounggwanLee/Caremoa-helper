@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.caremoa.helper.domain.dto.HelperJobDto;
 import com.caremoa.helper.domain.model.HelperJobType;
+import com.caremoa.helper.domain.model.vo.Address;
 import com.caremoa.helper.domain.service.HelperJobService;
 import com.caremoa.helper.exception.ApiException;
 
@@ -207,9 +208,12 @@ public class HelperJobController {
 				@RequestParam String wageAmount) {
 		try {
 			String[] String = jobArea1.split(",");
+			// Address  addr = new Address();
+			// if addr.setAddressCity(String[0]);
 			HelperJobDto newData =  HelperJobDto.builder()
 					.helperId(11L)
 					.jobType(getHelperType(jobType))
+					.jobArea1(null)
 					.build();
 			// return new ResponseEntity<>(HelperJobDto.toDto(service.postData(newData.toModel())), HttpStatus.CREATED);
 			return new ResponseEntity<>("test중", HttpStatus.CREATED);
