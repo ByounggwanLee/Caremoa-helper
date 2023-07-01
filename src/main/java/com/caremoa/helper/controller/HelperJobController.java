@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.caremoa.helper.domain.dto.HelperJobDto;
+import com.caremoa.helper.domain.model.HelperJobType;
 import com.caremoa.helper.domain.service.HelperJobService;
 import com.caremoa.helper.exception.ApiException;
 
@@ -178,6 +180,52 @@ public class HelperJobController {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		} catch (Exception e) {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
+	
+	/**
+	 * @methodName    : postData
+	 * @date          : 2023.05.31
+	 * @description   : 데이터를 입력한다.(POST)
+	 * @param newData
+	 * @return
+	*/
+	@Operation(summary = "도우미 구직 등록" , description = "도우미 구직 정보 신규 데이터 등록" )
+	@ApiResponses(value = { @ApiResponse(responseCode = "201", description = "Create the HelperJobDto", content = {
+			@Content(mediaType = "application/string", schema = @Schema(implementation = HelperJobDto.class)) }),
+			@ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content) })
+	@PostMapping("/helperreg")
+	ResponseEntity<String> helperreg(
+			    // @Schema(description = "도우미ID", nullable = false, defaultValue = "1")
+			    // @RequestBody Long helperId, 
+				@Schema(description = "도우미업무[유아돌봄,가사돌봄,유아가사돌봄]", nullable = true, defaultValue = "10")
+				@RequestParam String jobType,
+				@Schema(description = "근무선호지역[시(도),구(군),동(읍)]", nullable = true)
+				@RequestParam String jobArea1,
+				@Schema(description = "월급", nullable = true, defaultValue = "HOURLY02")
+				@RequestParam String wageAmount) {
+		try {
+			String[] String = jobArea1.split(",");
+			HelperJobDto newData =  HelperJobDto.builder()
+					.helperId(11L)
+					.jobType(getHelperType(jobType))
+					.build();
+			// return new ResponseEntity<>(HelperJobDto.toDto(service.postData(newData.toModel())), HttpStatus.CREATED);
+			return new ResponseEntity<>("test중", HttpStatus.CREATED);
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
+	private HelperJobType getHelperType(String input) {
+		switch(input) {
+		case "유아돌봄" :
+			return HelperJobType.BABYSITER;
+		case "가사돌봄" :
+			return HelperJobType.HOMEWORKER;
+		default :
+			return HelperJobType.BABYHOMEWORKER;
 		}
 	}
 }
