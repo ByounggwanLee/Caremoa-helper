@@ -418,5 +418,5 @@ logging:
 database: mysql    
 prop:
   test:
-    url: http://localhost:8081/helper/api
+    url: http://localhost:8080/helper/api
     
