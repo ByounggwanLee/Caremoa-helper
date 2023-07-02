@@ -63,7 +63,7 @@ public class HelperOfferController {
 	@GetMapping("/HelperOffers")
 	public ResponseEntity<List<HelperOfferDto>> getAll() {
 		try {
-			return ResponseEntity.ok().body(service.getAll().stream().map(HelperOfferDto::toDto).toList());
+			return ResponseEntity.ok().body(service.getAll().stream().map(HelperOfferDto::toDto).collect(Collectors.toList()));
 		} catch (Exception e) {
 			return ResponseEntity.internalServerError().body(null);
 		}
