@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.caremoa.helper.domain.dto.HelperJobDto;
 import com.caremoa.helper.domain.model.HelperJobType;
+import com.caremoa.helper.domain.model.TakerLevelType;
+import com.caremoa.helper.domain.model.WageType;
 import com.caremoa.helper.domain.model.vo.Address;
 import com.caremoa.helper.domain.service.HelperJobService;
 import com.caremoa.helper.exception.ApiException;
@@ -155,7 +157,7 @@ public class HelperJobController {
 	ResponseEntity<HelperJobDto> patchData(@RequestBody HelperJobDto newData,
 			@PathVariable("id") Long id) {
 		try {
-			return new ResponseEntity<>(HelperJobDto.toDto(service.putData(newData.toModel(),id)), HttpStatus.OK);
+			return new ResponseEntity<>(HelperJobDto.toDto(service.patchData(newData.toModel(),id)), HttpStatus.OK);
 		}catch( ApiException apiEx ) {
 		     return new ResponseEntity<>(null, apiEx.getCode());
 	    } catch (Exception e) {
@@ -203,23 +205,39 @@ public class HelperJobController {
 				@Schema(description = "도우미업무[유아돌봄,가사돌봄,유아가사돌봄]", nullable = true, defaultValue = "10")
 				@RequestParam String jobType,
 				@Schema(description = "근무선호지역[시(도),구(군),동(읍)]", nullable = true)
-				@RequestParam String jobArea1,
+				@RequestParam String jobArea,
 				@Schema(description = "월급", nullable = true, defaultValue = "HOURLY02")
 				@RequestParam String wageAmount) {
 		try {
-			String[] String = jobArea1.split(",");
-			// Address  addr = new Address();
-			// if addr.setAddressCity(String[0]);
+
+
 			HelperJobDto newData =  HelperJobDto.builder()
 					.helperId(11L)
 					.jobType(getHelperType(jobType))
-					.jobArea1(null)
+					.jobArea1(getAddress(jobArea))
+					.jobArea2(getAddress(jobArea))
+					.jobArea3(getAddress(jobArea))
+					.takerAge(TakerLevelType.NEWBORN)
+					.workingDays("11111000")
+					
+					.wageType(WageType.MONTHLY)
+					
 					.build();
 			// return new ResponseEntity<>(HelperJobDto.toDto(service.postData(newData.toModel())), HttpStatus.CREATED);
 			return new ResponseEntity<>("test중", HttpStatus.CREATED);
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+	}
+
+	private Address getAddress(String jobArea) {
+		String[] address = jobArea.split(",");
+		Address  addr = new Address();
+		if( address.length > 0)  addr.setAddressCity(address[0]);
+		if( address.length > 1)  addr.setAddressState(address[1]);
+		if( address.length > 2)  addr.setAddressStreet(address[2]);
+		
+		return addr;
 	}
 	
 	private HelperJobType getHelperType(String input) {

@@ -152,7 +152,7 @@ public class HelperController {
 	ResponseEntity<HelperDto> patchData(@RequestBody HelperDto newData,
 			@PathVariable("id") Long id) {
 		try {
-			return new ResponseEntity<>(HelperDto.toDto(service.putData(newData.toModel(),id)), HttpStatus.OK);
+			return new ResponseEntity<>(HelperDto.toDto(service.patchData(newData.toModel(),id)), HttpStatus.OK);
 		}catch( ApiException apiEx ) {
 		     return new ResponseEntity<>(null, apiEx.getCode());
 	    } catch (Exception e) {

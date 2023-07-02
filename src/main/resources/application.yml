@@ -173,7 +173,7 @@ spring:
 #              start-offset: earliest
       bindings:
         basicConsumer-in-0:
-          group: contract
+          group: helper
           destination: caremoa-topic
           content-type: application/json        
        # wheneverContractCompletedThenReflectionScore-in-0:

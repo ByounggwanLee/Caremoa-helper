@@ -24,7 +24,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @Embeddable
-@NoArgsConstructor(access = AccessLevel.PROTECTED) // AccessLevel.PUBLIC
+@NoArgsConstructor(access = AccessLevel.PUBLIC) // AccessLevel.PUBLIC
 public class Address {
 	@Column(name = "ADDRESS_STATE", nullable = true, length = 20)
 	@Schema(description = "도/시", nullable = true , defaultValue = "서울")

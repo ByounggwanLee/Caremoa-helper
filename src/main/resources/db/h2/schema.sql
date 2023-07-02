@@ -38,7 +38,23 @@ create table HELPERJOB (
 	primary key (ID)
 );
 
-alter table HELPER 
+create table HELPEROFFER (
+    ID bigint not null,
+	HELPER_ID bigint,
+	HELPER_NAME varchar(50),      
+	HELPER_PHONE_NUMBER varchar(50),
+	HELPER_JOB_TYPE  varchar(50),  
+	LOCATION varchar(50),         
+	EXPENSE bigint, 
+	MEMBER_ID bigint,
+	MEMBER_NAME varchar(50),      	
+	TARGET_NAME	varchar(50),
+	STATUS varchar(50), 
+	primary key (ID)
+);
+  
+alter
+ table HELPER 
    add constraint UK_HELPER01 unique (NICKNAME);
 
 alter table HELPERJOB 
@@ -48,3 +64,4 @@ alter table HELPERJOB
    add constraint FK_HELPERJOB01
    foreign key (HELPER_ID) 
    references HELPER;
+   
