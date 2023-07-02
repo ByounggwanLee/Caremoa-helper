@@ -44,6 +44,21 @@ create table HELPERJOB (
 	primary key (ID)
 ) engine=InnoDB;
 
+create table HELPEROFFER (
+    ID bigint not null,
+	HELPER_ID bigint,
+	HELPER_NAME varchar(50),      
+	HELPER_PHONE_NUMBER varchar(50),
+	HELPER_JOB_TYPE  varchar(50),  
+	LOCATION varchar(50),         
+	EXPENSE bigint, 
+	MEMBER_ID bigint,
+	MEMBER_NAME varchar(50),      	
+	TARGET_NAME	varchar(50),
+	STATUS varchar(50), 
+	primary key (ID)
+) engine=InnoDB;
+  
 alter table HELPER 
    add constraint UK_HELPER01 unique (NICKNAME);
 
