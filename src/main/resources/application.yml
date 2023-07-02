@@ -276,7 +276,7 @@ spring:
       #classpath*:db/${database}/data.sql
 
   datasource:
-    url: jdbc:mysql://3.39.223.154:3306/caremoa_helper?serverTimezone=Asia/Seoul 
+    url: jdbc:mysql://ec2-3-39-223-154.ap-northeast-2.compute.amazonaws.com:3306/caremoa_helper?serverTimezone=Asia/Seoul 
     username: user1
     password: user1
     hikari:   # SpringBoot2.x 는 디폴트로 HikariCP(성능좋음)
