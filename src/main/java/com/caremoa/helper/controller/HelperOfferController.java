@@ -171,11 +171,11 @@ public class HelperOfferController {
 			@Content(mediaType = "application/json", schema = @Schema(implementation = HelperOfferDto.class)) }),
 			@ApiResponse(responseCode = "404", description = "HelperOfferDto not found", content = @Content),
 			@ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content)})
-	@PatchMapping("/HelperOffers/{id}")
-	ResponseEntity<HelperOfferDto> patchData(@RequestBody HelperOfferDto newData,
-			@PathVariable("id") Long id) {
+	// @PatchMapping("/HelperOffers/{id}")
+	@PatchMapping("/HelperOffers")
+	ResponseEntity<HelperOfferDto> patchData(@RequestBody HelperOfferDto newData) {
 		try {
-			return new ResponseEntity<>(HelperOfferDto.toDto(service.patchData(newData.toModel(),id)), HttpStatus.OK);
+			return new ResponseEntity<>(HelperOfferDto.toDto(service.patchData(newData.toModel(),newData.getId())), HttpStatus.OK);
 		}catch( ApiException apiEx ) {
 		     return new ResponseEntity<>(null, apiEx.getCode());
 	    } catch (Exception e) {
